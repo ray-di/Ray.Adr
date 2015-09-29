@@ -1,0 +1,28 @@
+{
+    "name": "ray/adr",
+    "description":" ",
+    "keywords":[
+    ],
+    "license": "MIT",
+    "autoload":{
+        "psr-4":{
+            "Ray\\Adr\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4":{
+            "Ray\\Adr\\": ["tests/", "tests/Fake"]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "0.1.x-dev"
+        }
+    },
+    "require": {
+        "radar/adr": "1.x-dev",
+        "ray/di": "2.x-dev"
+    }
+}
