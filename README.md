@@ -2,7 +2,7 @@
 
 ## Radar.Adr with Ray.Di
 
-This is unofficial **experimental** subpackage for [Radar.Adr](https://github.com/radarphp/Radar.Adr). You can replace DI library from [Aura.Di](https://github.com/auraphp/Aura.Di) to [Ray.Di](https://github.com/ray-di/Ray.Di) .
+This is unofficial **experimental** subpackage for [Radar.Adr](https://github.com/radarphp/Radar.Adr) to replace DI library from [Aura.Di](https://github.com/auraphp/Aura.Di) to [Ray.Di](https://github.com/ray-di/Ray.Di) .
 
 ## Install
 
