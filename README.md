@@ -12,10 +12,20 @@ composer require ray/adr
 
 ## Usage
 
-To use [Ray.Di](https://github.com/ray-di/Ray.Di), Replace `use Radr\Adr\Boot;` to `use Ray\Adr\Boot;` in boot script.
+To use [Ray.Di](https://github.com/ray-di/Ray.Di), Replace `use Radar\Adr\Boot;` to `use Ray\Adr\Boot;` in boot script.
 
 ```php
 use Ray\Adr\Boot;
-$boot = new Boot; // this objcet holds Ray.Di injector. Objects will be instatiated with Ray.Di.
+$boot = new Boot($tmpDir); // this objcet holds Ray.Di injector. Objects will be instatiated with Ray.Di.
 
+```
+### Try it now
+
+```
+composer create-project -s dev radar/project example-project
+cd example-project
+composer require ray/adr
+// replace use Radar\Adr\Boot; to use Ray\Adr\Boot; in web/index.php
+cd web
+php index.php // {"phrase":"Hello world"}
 ```
