@@ -1,6 +1,9 @@
 <?php
 namespace Ray\Adr\Module;
 
+use Arbiter\ActionFactory;
+use Arbiter\ActionHandler as ArbiterActionHandler;
+use Radar\Adr\Handler\ActionHandler as RadarActionHandler;
 use Aura\Router\Map;
 use Aura\Router\Matcher;
 use Aura\Router\RouterContainer;
@@ -21,6 +24,7 @@ class AdrModule extends AbstractModule
      */
     protected function configure()
     {
+        $this->bind(ActionFactory::class);
         $this->bind(RouterContainer::class)->toConstructor(
             RouterContainer::class,
             null,
@@ -28,6 +32,14 @@ class AdrModule extends AbstractModule
         )->in(Scope::SINGLETON);
         $this->bind(RelayBuilder::class)->toConstructor(
             RelayBuilder::class,
+            'resolver'
+        );
+        $this->bind(ArbiterActionHandler::class)->toConstructor(
+            ArbiterActionHandler::class,
+            'resolver'
+        );
+        $this->bind(RadarActionHandler::class)->toConstructor(
+            RadarActionHandler::class,
             'resolver'
         );
         $this->bind(Map::class)->toProvider(MapProvider::class);

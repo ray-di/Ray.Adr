@@ -25,7 +25,6 @@ class Boot
         } catch (NotCompiled $e) {
             $compiler = new DiCompiler(new AdrModule, $this->tmpDir);
             $compiler->compile();
-            $compiler->dumpGraph();
             $adr = $compiler->getInstance(Adr::class);
         }
 
