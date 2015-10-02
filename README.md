@@ -26,60 +26,6 @@ composer create-project -s dev radar/project example-project
 cd example-project
 composer require ray/adr
 mkdir tmp
-```
-edit web/index.php
-
-```php
-<?php
-use josegonzalez\Dotenv\Loader as Dotenv;
-use Ray\Adr\Boot; // change here
-use Relay\Middleware\ExceptionHandler;
-use Relay\Middleware\ResponseSender;
-use Zend\Diactoros\Response as Response;
-use Zend\Diactoros\ServerRequestFactory as ServerRequestFactory;
-
-/**
- * Bootstrapping
- */
-require '../vendor/autoload.php';
-
-Dotenv::load([
-    'filepath' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env',
-    'toEnv' => true,
-]);
-
-$boot = new Boot(dirname(__DIR__) . '/tmp'); // change here
-$adr = $boot->adr();
-
-/**
- * Middleware
- */
-$adr->middle(new ResponseSender());
-$adr->middle(new ExceptionHandler(new Response()));
-$adr->middle('Radar\Adr\Handler\RoutingHandler');
-$adr->middle('Radar\Adr\Handler\ActionHandler');
-
-/**
- * Routes
- */
-$adr->get('Hello', '/{name}?', function (array $input) {
-        $payload = new Aura\Payload\Payload();
-        return $payload
-            ->setStatus($payload::SUCCESS)
-            ->setOutput([
-                'phrase' => 'Hello ' . $input['name']
-            ]);
-    })
-    ->defaults(['name' => 'world']);
-
-/**
- * Run
- */
-$adr->run(ServerRequestFactory::fromGlobals(), new Response());
-```
-run 
-
-```
-cd web
-php index.php // {"phrase":"Hello world"}
+cp vendor/ray/adr/web/index.php web/index.php
+php -S localhost:8080 -t web
 ```
