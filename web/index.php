@@ -11,6 +11,8 @@ use Zend\Diactoros\ServerRequestFactory as ServerRequestFactory;
  */
 require '../vendor/autoload.php';
 
+use Aura\Payload_Interface\PayloadStatus;
+
 Dotenv::load([
     'filepath' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env',
     'toEnv' => true,
@@ -33,7 +35,7 @@ $adr->middle('Radar\Adr\Handler\ActionHandler');
 $adr->get('Hello', '/{name}?', function (array $input) {
         $payload = new Aura\Payload\Payload();
         return $payload
-            ->setStatus($payload::SUCCESS)
+            ->setStatus(PayloadStatus::SUCCESS)
             ->setOutput([
                 'phrase' => 'Hello ' . $input['name']
             ]);
